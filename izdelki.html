@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="sl" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Izdelki · Plastika Medved</title>
+<meta name="description" content="Nagrobni in termo program, lončki, vložki, party in plastenke. Vsi izdelki Plastike Medved z merami.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/site.css?v=11">
+<style>
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.cat-head .lead{color:var(--gray)}
+.bar{position:sticky;top:0;z-index:30;background:rgba(243,241,238,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:16px var(--gutter);display:flex;justify-content:space-between;align-items:center;gap:20px;transition:top .45s var(--ease)}
+body:not(.nav-hidden) .bar{top:var(--nav-h)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font-size:17px;font-weight:500;padding:11px 18px;border-radius:6px;background:var(--paper);transition:background .3s,color .3s;white-space:nowrap}
+.tab small{color:var(--gray);font-weight:400;margin-left:6px;transition:color .3s}
+.tab:hover{background:var(--stone)}
+.tab.on{background:var(--ink);color:#fff}
+.tab.on small{color:rgba(255,255,255,.6)}
+.view{display:flex;gap:4px;background:var(--paper);border-radius:8px;padding:4px}
+.view button{font-size:16px;font-weight:500;padding:8px 14px;border-radius:5px;color:var(--gray);transition:background .3s,color .3s}
+.view button.on{background:var(--bg);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(200px,17vw,340px),1fr));gap:12px;padding:12px var(--gutter) clamp(96px,10vw,200px)}
+.pcard{opacity:0;transform:translateY(24px);animation:in .7s var(--ease) forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.reduced .pcard{opacity:1;transform:none;animation:none}
+.lineup{display:none;padding:40px var(--gutter) clamp(96px,10vw,200px);overflow-x:auto;scrollbar-width:none}
+.lineup::-webkit-scrollbar{display:none}
+.lineup-in{display:flex;align-items:flex-end;gap:clamp(14px,1.6vw,32px);width:max-content;padding-bottom:12px;position:relative;min-height:60vh}
+.lineup-in::after{content:"";position:absolute;left:0;right:0;bottom:58px;height:1px;background:var(--stone-2)}
+.lineup .sitem{display:flex;flex-direction:column;align-items:center;gap:22px;cursor:pointer}
+.lineup .sitem img{width:auto;transition:transform .5s var(--ease)}
+.lineup .sitem:hover img{transform:translateY(-10px)}
+.lineup .sitem span{font-size:14px;color:var(--gray);white-space:nowrap;text-align:center;line-height:1.15;height:36px}
+.lineup .sitem b{display:block;color:var(--ink);font-weight:500;font-size:15px}
+.is-lineup .grid{display:none}
+.is-lineup .lineup{display:block}
+.note{padding:0 var(--gutter);color:var(--gray);font-size:16px;margin-top:-60px;margin-bottom:80px}
+
+/* drawer */
+.dscrim{position:fixed;inset:0;background:rgba(18,18,18,.28);z-index:60;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(1080px,92vw);background:var(--bg);z-index:61;transform:translateX(100%);transition:transform .6s var(--ease);display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden}
+.d-open .dscrim{opacity:1;visibility:visible}
+.d-open .drawer{transform:none}
+.d-img{background:var(--paper);display:flex;align-items:flex-end;justify-content:center;padding:12vh 10% 8vh;position:relative}
+.d-img img{max-height:82%;max-width:100%;object-fit:contain}
+.d-body{padding:clamp(28px,3vw,56px);display:flex;flex-direction:column;overflow-y:auto}
+.d-close{align-self:flex-end;width:48px;height:48px;border-radius:50%;background:var(--paper);display:grid;place-items:center;transition:background .3s,color .3s}
+.d-close:hover{background:var(--ink);color:#fff}
+.d-prog{margin-top:clamp(24px,4vh,60px);color:var(--gray);font-size:17px}
+.d-name{font-size:clamp(44px,4.6vw,92px);font-weight:500;letter-spacing:-.045em;line-height:1;padding-bottom:.06em;margin-top:8px}
+.specs{margin-top:clamp(28px,4vh,56px);border-top:1px solid var(--stone-2)}
+.specs div{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--stone-2);font-size:18px}
+.specs dt{color:var(--gray)}
+.specs dd{font-weight:500}
+.d-sw{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.d-sw i{width:30px;height:30px;border-radius:7px}
+.d-sw-l{margin-top:28px;color:var(--gray);font-size:16px}
+.d-sw-l + .d-sw{margin-top:12px}
+.d-actions{margin-top:auto;padding-top:40px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.d-nav{display:flex;gap:8px}
+.d-nav button{width:52px;height:52px;border-radius:50%;background:var(--paper);display:grid;place-items:center;transition:background .3s,color .3s}
+.d-nav button:hover{background:var(--ink);color:#fff}
+.d-nav svg{width:16px;height:16px}
+
+@media (max-width:900px){
+  .drawer{grid-template-columns:1fr;grid-template-rows:42vh 1fr;width:100vw}
+  .d-img{padding:5vh 20% 3vh}
+  .bar{flex-direction:column;align-items:stretch}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--gutter));padding:0 var(--gutter)}
+  .tabs::-webkit-scrollbar{display:none}
+  .view{align-self:flex-start}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .pcard .pmeta{flex-direction:column;align-items:flex-start;gap:4px;padding:12px 14px 14px}
+  .pcard .pname{font-size:16px}
+  .pcard .pspec{font-size:14px}
+}
+</style>
+</head>
+<body data-page="izdelki">
+<main>
+  <section class="phero wrap cat-head">
+    <h1 class="display h1 rv">Izdelki</h1>
+    <p class="lead rv" data-d=".1" id="catLead">Vsi izdelki iz šestih programov. Kliknite izdelek za mere, barve in povpraševanje.</p>
+  </section>
+
+  <div class="bar" id="bar">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="view" role="group" aria-label="Pogled">
+      <button class="on" data-v="grid">Mreža</button>
+      <button data-v="lineup">V merilu</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="lineup" id="lineup"><div class="lineup-in" id="lineupIn"></div></div>
+</main>
+
+<div class="dscrim" id="dscrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Podrobnosti izdelka">
+  <div class="d-img"><img id="dImg" src="" alt=""></div>
+  <div class="d-body">
+    <button class="d-close" id="dClose" aria-label="Zapri"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    <div class="d-prog" id="dProg"></div>
+    <h2 class="d-name" id="dName"></h2>
+    <dl class="specs" id="dSpecs"></dl>
+    <div id="dSwWrap"></div>
+    <div class="d-actions">
+      <a class="btn red-btn" id="dAsk" href="kontakt.html">Pošlji povpraševanje</a>
+      <div class="d-nav">
+        <button id="dPrev" aria-label="Prejšnji izdelek"><svg viewBox="0 0 16 16" fill="none"><path d="M15 8H2M7 3L2 8l5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <button id="dNext" aria-label="Naslednji izdelek"><svg viewBox="0 0 16 16" fill="none"><path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div id="footer"></div>
+
+<script src="assets/js/products.js?v=11"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
+<script src="assets/js/site.js?v=11"></script>
+<script>
+(function(){
+  const P = window.PRODUCTS, PR = window.PROGRAMS;
+  const progName = Object.fromEntries(PR.map(p=>[p.key,p.name]));
+  const SW = ['#d51f2e','#f39a1d','#f7dc2c','#0b5da8','#b5875a','#2b2f31','#7a1ea1','#dfe3ea','#00b092'];
+  const q = new URLSearchParams(location.search);
+  let prog = q.get('program') || 'vse', view = 'grid', list = [];
+
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = [{key:'vse',name:'Vse'}, ...PR].map(p=>{
+    const n = p.key==='vse' ? P.length : P.filter(x=>x.cat===p.key).length;
+    return `<button class="tab" role="tab" data-k="${p.key}">${p.key==='vse'?'Vse':p.name.replace(' program','')}<small>${n}</small></button>`;
+  }).join('');
+
+  const spec = p => p.h ? `${p.h} mm` : '';
+  function render(){
+    list = prog==='vse' ? P : P.filter(p=>p.cat===prog);
+    tabs.querySelectorAll('.tab').forEach(t=>{ t.classList.toggle('on', t.dataset.k===prog); t.setAttribute('aria-selected', t.dataset.k===prog); });
+    document.getElementById('grid').innerHTML = list.map((p,i)=>`
+      <article class="pcard" data-s="${p.slug}" style="animation-delay:${Math.min(i,24)*25}ms" tabindex="0">
+        <div class="pimg"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+        <div class="pmeta"><span class="pname">${p.name}</span><span class="pspec">${spec(p)}</span></div>
+      </article>`).join('');
+    const withH = list.filter(p=>p.h).sort((a,b)=>a.h-b.h);
+    const k = Math.min(innerHeight*.56, 600) / 330;
+    document.getElementById('lineupIn').innerHTML = withH.map(p=>`<div class="sitem" data-s="${p.slug}"><img src="${p.img}" alt="${p.name}" style="height:${p.h*k}px" loading="lazy"><span><b>${p.name}</b>${p.h} mm</span></div>`).join('');
+    const url = new URL(location); prog==='vse' ? url.searchParams.delete('program') : url.searchParams.set('program', prog); url.searchParams.delete('izdelek'); history.replaceState(null,'',url);
+    window.ScrollTrigger && ScrollTrigger.refresh();
+  }
+  tabs.addEventListener('click', e => { const t = e.target.closest('.tab'); if (!t) return; prog = t.dataset.k; render(); });
+  document.querySelector('.view').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return; view = b.dataset.v;
+    document.querySelectorAll('.view button').forEach(x=>x.classList.toggle('on', x===b));
+    document.body.classList.toggle('is-lineup', view==='lineup');
+  });
+
+  // drawer
+  let cur = -1;
+  const body = document.body, dImg = document.getElementById('dImg');
+  function open(slug){
+    const i = list.findIndex(p=>p.slug===slug);
+    if (i < 0) { list = P; return open(slug); }
+    cur = i; const p = list[i];
+    dImg.src = p.img; dImg.alt = p.name;
+    document.getElementById('dProg').textContent = progName[p.cat];
+    document.getElementById('dName').textContent = p.name;
+    const rows = [['Šifra', p.code], ['Višina', p.h && p.h+' mm'], ['Premer', p.d && p.d+' mm'], ['Program', progName[p.cat]]].filter(r=>r[1]);
+    document.getElementById('dSpecs').innerHTML = rows.map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join('');
+    document.getElementById('dSwWrap').innerHTML = (p.cat==='nagrobni'||p.cat==='termo')
+      ? `<div class="d-sw-l">Barve po dogovoru</div><div class="d-sw">${SW.map(c=>`<i style="background:${c}"></i>`).join('')}</div>` : '';
+    document.getElementById('dAsk').href = 'kontakt.html?izdelek=' + encodeURIComponent(p.name);
+    body.classList.add('d-open'); document.getElementById('drawer').setAttribute('aria-hidden','false');
+    window.lenis && lenis.stop();
+  }
+  function close(){ body.classList.remove('d-open'); document.getElementById('drawer').setAttribute('aria-hidden','true'); window.lenis && lenis.start(); }
+  document.addEventListener('click', e => { const c = e.target.closest('[data-s]'); if (c) open(c.dataset.s); });
+  document.addEventListener('keydown', e => {
+    if (e.key==='Enter' && e.target.matches('.pcard')) open(e.target.dataset.s);
+    if (!body.classList.contains('d-open')) return;
+    if (e.key==='Escape') close();
+    if (e.key==='ArrowRight') open(list[(cur+1)%list.length].slug);
+    if (e.key==='ArrowLeft') open(list[(cur-1+list.length)%list.length].slug);
+  });
+  document.getElementById('dClose').onclick = close;
+  document.getElementById('dscrim').onclick = close;
+  document.getElementById('dNext').onclick = () => open(list[(cur+1)%list.length].slug);
+  document.getElementById('dPrev').onclick = () => open(list[(cur-1+list.length)%list.length].slug);
+
+  // keep filter bar under nav when nav hides
+  const nav = document.getElementById('nav');
+  new MutationObserver(()=>body.classList.toggle('nav-hidden', nav.classList.contains('hide'))).observe(nav,{attributes:true,attributeFilter:['class']});
+
+  render();
+  if (q.get('izdelek')) open(q.get('izdelek'));
+})();
+</script>
+</body>
+</html>
