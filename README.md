@@ -10,5 +10,5 @@ Static site (no build step) for Plastika Medved d.o.o., Dragonja vas.
 
 Run locally: `python3 -m http.server 4880` in this folder.
 
-Deployed on Vercel (`plastika-medved-redesign`, AKEO team) behind basic auth via `middleware.js`
-(env vars `PITCH_USER` / `PITCH_PASS`) and `X-Robots-Tag: noindex`.
+Deployed on Vercel (`plastika-medved-redesign`, AKEO team) behind a password page via `middleware.js`
+(env var `PITCH_PASS`, cookie valid 30 days) and `X-Robots-Tag: noindex`.
