@@ -19,7 +19,7 @@ function page(error) {
 @font-face{font-family:"Messina Sans";src:url("/assets/fonts/MessinaSans-SemiBold.ttf");font-weight:500}
 *{box-sizing:border-box;margin:0}
 body{min-height:100vh;min-height:100svh;background:#f3f1ee;color:#121212;font-family:"Messina Sans","Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,3.2vw,64px)}
-img{height:72px;width:auto}
+img{height:72px;width:auto;align-self:flex-start}
 h1{font-size:clamp(48px,9vw,180px);font-weight:500;letter-spacing:-.045em;line-height:1;padding-bottom:.06em}
 form{display:flex;gap:12px;margin-top:clamp(28px,3vw,48px);max-width:620px;flex-wrap:wrap}
 input{flex:1 1 260px;font:inherit;font-size:19px;background:#fff;border:0;border-radius:10px;padding:18px 20px;outline:none}
