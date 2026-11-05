@@ -1,5 +1,6 @@
 // Password gate for the client pitch: a branded login page that sets a cookie.
 // Works in every browser and in-app webview (basic auth does not). Password comes from env var PITCH_PASS.
+// A private link (/?k=first 20 hex chars of the token) logs in without typing.
 export const config = { matcher: '/(.*)' };
 
 const COOKIE = 'pm_access';
@@ -59,6 +60,16 @@ export default async function middleware(request) {
       }});
     }
     return html(page(true), 401);
+  }
+
+  // private share link: /?k=<key> logs in without typing and drops the key from the URL
+  const key = url.searchParams.get('k');
+  if (key && key === good.slice(0, 20)) {
+    url.searchParams.delete('k');
+    return new Response(null, { status: 303, headers: {
+      Location: url.pathname + url.search, 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer',
+      'Set-Cookie': `${COOKIE}=${good}; Path=/; Max-Age=31536000; HttpOnly; Secure; SameSite=Lax`
+    }});
   }
 
   const cookie = (request.headers.get('cookie') || '').split(/;\s*/).find(c => c.startsWith(COOKIE + '='));
